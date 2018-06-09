@@ -1,0 +1,106 @@
+.navigation {
+    position: relative;
+    background-color: lightblue; }
+  
+  .nav-list {
+    padding: 0;
+    margin: 0;
+    min-height: 70px;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+  
+  .nav-item {
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none; }
+  
+  .nav-link {
+    padding: 8px 20px;
+    color: #232323; }
+  
+  footer {
+    background-color: lightblue; }
+  
+  .footer {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 70px;
+    -ms-flex-align: center;
+    align-items: center; }
+  
+  .register {
+    position: relative;
+    min-height: 550px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: start;
+    justify-content: flex-start; }
+  
+  .signup-form {
+    margin: 100px 0;
+    width: 550px;
+    max-width: 75%;
+    background-color: lightblue;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); }
+    .signup-form h1 {
+      text-align: center;
+      text-transform: uppercase;
+      color: #232323; }
+    .signup-form button {
+      font-size: 1.2rem;
+      font-family: Lato,sans-serif;
+      padding: 14px;
+      margin: 20px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      background-color: #fff;
+      max-width: 40%;
+      -ms-flex-item-align: center;
+      align-self: center;
+      cursor: pointer;
+      font-weight: 300; }
+    .signup-form form {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column; }
+  
+  .input-block {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 5px 0 20px 0; }
+    .input-block input {
+      border: none;
+      padding: 10px 15px;
+      outline: none;
+      font-size: 1.1rem;
+      border-radius: 2px;
+      background-color: #fff;
+      width: 70%; }
+    .input-block svg {
+      position: absolute;
+      left: 55px;
+      top: 12px; 
+    }
+  

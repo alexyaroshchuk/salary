@@ -1,0 +1,69 @@
+.my-flex-container1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #232323;
+    height: 1280px;
+    width: 1280px;
+    border: 1px solid #000;
+}
+.nav {
+    background: url("/../img/bg.png");
+    background-color: rgba(192, 192, 192, 0.918);
+    color: #ffffff;
+    list-style: none;
+    text-align: right;
+    padding: 20px 0 20px 0;
+}
+.nav > li {
+    display: inline-block;
+    padding: 0 70px 0 70px;
+}
+.nav > li > a {
+    text-decoration: none;
+    color: #ffffff;
+    /*font-size: 12px;*/
+}
+.nav > li > a:hover {
+    color: #000000;
+}
+.logo {
+    color: white;
+    float: left;
+    padding-left: 70px;
+}
+.my-flex-container2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    color: #232323;
+    height: 1000px;
+    width: 1200px;
+    border: 1px solid #000;
+}
+.filters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    height: 50%;
+    flex: 3 0 0;
+    border: 1px solid #000;
+}
+.workers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    height: 50%;
+    flex: 7 0 0;
+    border: 1px solid #000;
+}
+.worker {
+    width: 33.333334%;
+}
