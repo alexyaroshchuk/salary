@@ -19,7 +19,7 @@
         foreach($settlementsheet as $SS)
                 <form action="/deleteSS/{{$SS->id_settlement_sheet}}" method="post">
                 {{ csrf_field() }}
-                <button>удалить сотрудника</button>
+                <button class = "btn btn-delete">удалить сотрудника</button>
                 </form>         
         @endforeach
 @endsection 
