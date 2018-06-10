@@ -18,7 +18,7 @@ Route::get('/refreshSS', 'SettlementSheetsController@refreshSS')->name('refreshS
 Route::post('/refreshSS', 'SettlementSheetsController@updateSS')->name('updateSS');
 //Route::post('/deleteStaff/{id}','StaffController@destroy')->name('destroy');
 
-Route::post('/profile/{{id_settlement_sheet}}', 'SettlementSheeetsController@destroySS')->name('destroySS');
+Route::post('/profile/{{id_settlement_sheet}}', 'SettlementSheetsController@destroySS')->name('destroySS');
 
 //Route::post('/addworker', 'WorkerInfoController@storeWorker')->name('storeWorker');
 
