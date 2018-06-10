@@ -16,11 +16,10 @@
         </p>
         <p><a class="btn btn-success" href="{{route('addSS', ['id_worker'=>$worker->id_worker])}}" role="button">Add Settlement Sheet</a></p>
         <p><a class="btn btn-warning" href="{{route('refreshSS')}}" role="button">Update Settlement Sheet</a></p>
-        foreach($settlementsheet as $SS)
-                <form action="/deleteSS/{{$SS->id_settlement_sheet}}" method="post">
+        <form method="POST" action= "{{route('destroySS', ['id_settlement_sheet'=>$SS->id_settlement_sheet])}}">
                 {{ csrf_field() }}
-                <button class = "btn btn-delete">удалить сотрудника</button>
-                </form>         
-        @endforeach
+                <button class = "btn btn-danger">Delete Settlement Sheet</button>
+                <input type="text" name="id_settlement_sheet">
+        </form>         
 @endsection 
 

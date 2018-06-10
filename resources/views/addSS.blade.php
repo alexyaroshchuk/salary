@@ -1,8 +1,8 @@
 @extends('layouts.start')
 
 @section('content') 
-        <div class="form">
-        <div class="container">
+    <div class="form">
+    <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form method="POST" action="{{route('storeSS')}}">

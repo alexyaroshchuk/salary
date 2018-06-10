@@ -34,7 +34,7 @@
                 <label for="alias">id_taxes</label>
                 <input type="text" class="form-control" id="alias" name="id_taxes" placeholder="id_taxes">
               </div>
-              <button type="submit" class="btn btn-success">Update</button>
+              <button type="submit" class="btn btn-warning">Update</button>
                {{ csrf_field() }}                 
             </form>
       </div>

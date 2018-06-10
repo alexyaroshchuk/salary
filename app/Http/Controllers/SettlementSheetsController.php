@@ -60,8 +60,9 @@ class SettlementSheetsController extends Controller
     }  
 
     public function destroySS(Request $request) {
+        $id_settlement_sheet = $request->id_settlement_sheet;
         SettlementSheeets::destroy($id_settlement_sheet);
-        return redirect('/workerinfo');                                             
+        return redirect()->back();                                           
     }
 }
 
