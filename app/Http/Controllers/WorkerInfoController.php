@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class WorkerInfoController extends Controller
 {
+    public function __construct()
+	{
+		$this->middleware('auth');
+    }
+    
     public function workerShow($id_worker){
         $worker = Workers::where('id_worker', $id_worker)->first();
         $workerAll = Workers::all();
@@ -18,22 +23,5 @@ class WorkerInfoController extends Controller
         //dump($position);
         return view('workerinfo', compact('worker_id', 'worker_fullname',
                                         'settlementsheet', 'position', 'worker')); 
-    }
-
-
-    public function storeWorker(Request $request) {
-        
-        $fullname = $request->fullname;
-        $date_of_birth = $request->date_of_birth;
-        $id_poistion = $request->id_poistion;
-        
-
-        Workers::create([
-        'fullname'=>$fullname,
-        'date_of_birth'=>$date_of_birth,
-        'id_poistion' => $id_poistion,   
-        ]);     
-        
-      return redirect()->back()->with('message', 'Сотрудник добавлен');                                                
     }
 }

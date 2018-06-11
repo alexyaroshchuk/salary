@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Workers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -19,8 +20,7 @@ class RegisterController extends Controller
 
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
+        return Validator::make($data, [ 
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -28,16 +28,25 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-        
-        return Workers::create([
+        Workers::create([
             'fullname' => $data['fullname'],
             'date_of_birth' => $data['date_of_birth'],
             'id_position' => $data['id_position'],
         ]);
+        
+        $email = $data['email'];
+        $pwdHash =  bcrypt($data['password']);
+        
+        return User::create([
+            'email' => $email,
+            'password' => $pwdHash,
+            'role_id' => 3
+        ]);  
+       
+        config(['database.connections.pgsqlAuth.username' => env('DB_USERNAME')]);
+        config(['database.connections.pgsqlAuth.password' => env('DB_PASSWORD')]);
+
+        DB::connection('pgsqlAuth')
+	      ->select("INSERT INTO users(email, password, role_id) VALUES ('$email','$pwdHash', 3)"); 
     }
 }

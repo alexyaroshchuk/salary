@@ -5,8 +5,12 @@ Route::get('/', function () {
     return view('layouts/start');
 });
 
+Route::get('/about', function(){
+    return view('/about');
+});
 Route::get('/workers' , 'WorkersController@showWorkers');
 Route::post('/workers', 'WorkersController@showWorkers');
+Route::post('showWorkers', 'WorkersController@showWorkers');
 
 Route::get('/workers/{id_worker}', 'WorkerInfoController@workerShow')->name('workerShow');
 Route::get('/profile/{id_worker}', 'WorkerInfoController@workerShow')->name('workerShow');
@@ -19,8 +23,6 @@ Route::post('/refreshSS', 'SettlementSheetsController@updateSS')->name('updateSS
 //Route::post('/deleteStaff/{id}','StaffController@destroy')->name('destroy');
 
 Route::post('/profile/{{id_settlement_sheet}}', 'SettlementSheetsController@destroySS')->name('destroySS');
-
-//Route::post('/addworker', 'WorkerInfoController@storeWorker')->name('storeWorker');
 
 
 Auth::routes();

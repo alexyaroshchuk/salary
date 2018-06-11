@@ -1,8 +1,13 @@
 body{
+    background: url(../img/bg1.jpg); /* Добавляем фон */
+    background-size:cover;
     padding-top: 50px;
+    color: #5d3b3b;
 }
 
+
 .starter-template{
+    color: #5d3b3b;
     padding: 40px 15px;
     text-align: center;
 }

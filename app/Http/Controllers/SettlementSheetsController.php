@@ -7,6 +7,11 @@ use App\SettlementSheets;
 
 class SettlementSheetsController extends Controller
 {
+    public function __construct()
+	{
+		$this->middleware('auth');
+    }
+    
     public function addSS(){
             return view('addSS');
     }

@@ -14,6 +14,6 @@ class SettlementSheets extends Model
     public $timestamps = false;
 
     public function worker(){
-        return $this -> belongTo('App\Workers');
+        return $this ->  hasOne('App\Workers', 'id_worker', 'id_worker');
     } 
 }

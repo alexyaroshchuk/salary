@@ -19,4 +19,9 @@ class Workers extends Model
     public function position() {
         return $this -> hasOne('App\WPosition', 'id_position', 'id_position');
     }
+
+    public function user()
+	{
+		return $this->belongsTo(User::class, 'id');
+	}
 }

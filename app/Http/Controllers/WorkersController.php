@@ -8,29 +8,40 @@ use App\SettlementSheets;
 use App\WPosition;
 use Illuminate\Http\Request;
 use Input;
+use Carbon\Carbon;
 
 class WorkersController extends Controller
 {
-    public function showWorkers(){
-        $workers = Workers::all();
-            //$min_P = $request->input('min_P');
-        //     $workers = Workers::where(function($query){
-        //         $min_P =  Input::has('min_P') ? Input::get('min_P'): null;
-        //         dump($min_P); 
-        //         //$min_position =  Input::has('min_P') ? Input::get('min_P'): null; 
-        //         //$min_position = Request::Input('min_P','0');
-        //         //dump($min_position);
-        //         $max_position = Input::has('max_position') ? Input::get('max_position') : null;
-        //         dump($max_position);
-        //         $sick_leave = Input::has('sick_leave') ? Input::get('sick_leave') : [];
-        //         if(isset($min_position) && isset($max_position)){
-        //                 $query -> where('id_position', '>=', $min_position)
-        //                         -> where('id_position', '<=', $max_position);
-        //         }
-        //         //dump($min_position);
-        //         dump($max_position);
-        // })->get();
+    public function __construct()
+	{
+		$this->middleware('auth');
+    }
+    
+    public function showWorkers(Request $request){
+            $workers = SettlementSheets::where(function($query){
 
-        return view('workers', compact('workers'));
+            $fromDate = Input::has('from_date') ? Input::get('from_date') : null;
+            $toDate = Input::has('to_date') ? Input::get('to_date') : null;  
+
+            $MinSL =  Input::has('MinSL') ? Input::get('MinSL'): null;
+            $MaxSL = Input::has('MaxSL') ? Input::get('MaxSL') : null;
+
+            $MinAL = Input::has('MinAL') ? Input::get('MinAL') : null;
+            $MaxAL = Input::has('MaxAL') ? Input::get('MaxAL') : null;  
+
+            $MinAF = Input::has('MinAF') ? Input::get('MinAF') : null;
+            $MaxAF = Input::has('MaxAF') ? Input::get('MaxAF') : null;  
+
+            $MinHours = Input::has('MinHours') ? Input::get('MinHours') : null;
+            $MaxHours = Input::has('MaxHours') ? Input::get('MaxHours') : null;  
+            if(isset($fromDate) && isset($toDate)){
+                        $query  -> whereBetween('pay_date', [$fromDate, $toDate])
+                        -> whereBetween('sick_leave', [$MinSL, $MaxSL])
+                        -> whereBetween('annual_leave', [$MinAL, $MaxAL])
+                        -> whereBetween('awards_fine', [$MinAF, $MaxAF])
+                        -> whereBetween('hours', [$MinHours, $MaxHours]);
+                }
+        })->get();
+        return view('workers', compact('workers', 'settlementsheet'));
     }
 }
