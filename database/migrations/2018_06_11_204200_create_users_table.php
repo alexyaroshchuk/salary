@@ -21,14 +21,14 @@ class CreateUsersTable extends Migration
 	              ->on('roles')
 	              ->onDelete('cascade');
         });
-	    // DB::table('users')->insert([
-		//     'email' => env('USER_INITIAL_EMAIL'),
-		//     'password' => hash('sha512', env('USER_INITIAL_PASSWORD')),
-		//     'role_id' => 1,
-		//     'activated' => true,
-		//     'created_at' => 'now()',
-		//     'updated_at' => 'now()'
-	    // ]);
+	    DB::table('users')->insert([
+		    'email' => env('USER_INITIAL_EMAIL'),
+		    'password' =>  bcrypt(env('USER_INITIAL_PASSWORD')),
+		    'role_id' => 1,
+		    'activated' => true,
+		    'created_at' => 'now()',
+		    'updated_at' => 'now()'
+	    ]);
     }
     
     public function down()

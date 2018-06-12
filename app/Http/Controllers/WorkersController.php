@@ -6,6 +6,7 @@ use App;
 use App\Workers;
 use App\SettlementSheets;
 use App\WPosition;
+use App\Role;
 use Illuminate\Http\Request;
 use Input;
 use Carbon\Carbon;

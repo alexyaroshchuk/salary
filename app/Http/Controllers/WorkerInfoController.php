@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App;
 use App\Workers;
 use App\SettlementSheets;
+use App\Role;
+
 use Illuminate\Http\Request;
 
 class WorkerInfoController extends Controller
@@ -20,7 +22,6 @@ class WorkerInfoController extends Controller
         $worker_id=$worker->id_worker;
         $worker_fullname = $worker->fullname;
         $position = $worker -> position;
-        //dump($position);
         return view('workerinfo', compact('worker_id', 'worker_fullname',
                                         'settlementsheet', 'position', 'worker')); 
     }
