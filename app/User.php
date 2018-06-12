@@ -17,7 +17,7 @@ class User extends Model implements AuthenticatableContract,
 
     protected $table = 'users';
 
-    protected $fillable = ['email', 'password', 'role_id', 'activated'];
+    protected $fillable = ['name', 'email', 'password', 'role_id', 'activated'];
 
     protected $hidden = ['password', 'remember_token'];
 	public function worker()

@@ -16,6 +16,7 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     protected $redirectTo = '/home';
+    
     public function __construct()
     {
         $this->middleware('guest');
@@ -24,6 +25,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [ 
+            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -31,10 +33,9 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-
+        $name = $data['name'];
         $email = $data['email'];
         $pwdHash =  bcrypt($data['password']);
-        
        
         config(['database.connections.pgsqlAuth.username' => env('DB_USERNAME')]);
         config(['database.connections.pgsqlAuth.password' => env('DB_PASSWORD')]);
@@ -49,7 +50,9 @@ class RegisterController extends Controller
             'date_of_birth' => $data['date_of_birth'],
             'id_position' => $data['id_position'],
         ]);
+        dump($name);
         return User::create([
+            'name' => $name,
             'email' => $email,
             'password' => $pwdHash,
             'role_id' => 3

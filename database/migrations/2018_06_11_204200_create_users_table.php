@@ -10,6 +10,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('role_id');
@@ -22,6 +23,7 @@ class CreateUsersTable extends Migration
 	              ->onDelete('cascade');
         });
 	    DB::table('users')->insert([
+            'name' => env('USER_INITIAL_NAME'),
 		    'email' => env('USER_INITIAL_EMAIL'),
 		    'password' =>  bcrypt(env('USER_INITIAL_PASSWORD')),
 		    'role_id' => 1,

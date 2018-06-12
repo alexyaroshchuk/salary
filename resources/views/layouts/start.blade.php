@@ -36,7 +36,7 @@
                     @else
                     <li class="dropdown">
                         <a href="#"  data-toggle="dropdown" role="button" aria-expanded="false"  v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        {{Auth::user()->name}} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="nav-item">
