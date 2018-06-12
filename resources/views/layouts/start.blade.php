@@ -1,3 +1,7 @@
+<?php
+    use App\Role;
+    $role = new Role();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +14,11 @@
 </head>
 <body style = "margin-top: 50px">
     <div id ="app">
+    @if (session('message'))
+    <div class="alert alert-success">
+     {{ session('message') }} 
+    </div>
+    @endif
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="position: fixed; top: 0;">
             <a class="navbar-brand" href="/">CompanY</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,15 +39,21 @@
                         <li class="nav-item  active">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
-                        <li class="nav-item  active">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
+                        <!-- <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li> -->
+                    
                     @else
                     <li class="dropdown">
                         <a href="#"  data-toggle="dropdown" role="button" aria-expanded="false"  v-pre>
                         {{Auth::user()->name}} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                        @if($role->isAdmin())
+                            <li class="nav-item">
+                                <a href="{{ route('addUser') }}">Add co-worker</a>
+                            </li>
+                        @endif
                             <li class="nav-item">
                                 <a href="/home"> Home <span class="sr-only">(current)</span></a>
                             </li>

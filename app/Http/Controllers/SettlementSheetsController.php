@@ -18,6 +18,18 @@ class SettlementSheetsController extends Controller
     }
 
     public function storeSS(Request $request) {
+
+        if(Role::isStaff())
+	    {
+		    session()->flash(
+			    'messageError', 'Not enough privileges'
+		    );
+		    return back()->withErrors([
+			    'message' => 'Non enough privileges'
+		    ]);
+        }
+        
+
         $id_settlement_sheet = $request ->id_settlement_sheet;
         $id_worker = $request->id_worker;
         $annual_leave = $request->annual_leave;
@@ -45,6 +57,18 @@ class SettlementSheetsController extends Controller
     }
 
     public function updateSS(Request $request) {
+
+        if(Role::isStaff())
+	    {
+		    session()->flash(
+			    'messageError', 'Not enough privileges'
+		    );
+		    return back()->withErrors([
+			    'message' => 'Non enough privileges'
+		    ]);
+        }
+        
+
         $id_settlement_sheet = $request ->id_settlement_sheet;
         $id_worker = $request->id_worker;
         $annual_leave = $request->annual_leave;
@@ -66,6 +90,18 @@ class SettlementSheetsController extends Controller
     }  
 
     public function destroySS(Request $request) {
+
+        if(Role::isStaff())
+	    {
+		    session()->flash(
+			    'messageError', 'Not enough privileges'
+		    );
+		    return back()->withErrors([
+			    'message' => 'Non enough privileges'
+		    ]);
+        }
+        
+        
         $id_settlement_sheet = $request->id_settlement_sheet;
         SettlementSheeets::destroy($id_settlement_sheet);
         return redirect()->back();                                           

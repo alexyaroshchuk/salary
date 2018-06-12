@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;   
 
+use Illuminate\Http\Request;
 use App\Workers;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -11,18 +12,17 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 
-class RegisterController extends Controller
-{
+class UsersController extends Controller
+{   
     use RegistersUsers;
-
-    protected $redirectTo = '/home';
     
-    public function __construct()
-    {
-        $this->middleware('guest');
+    protected $redirectTo = '/home';
+
+    public function addUser(){
+        return view('addUser');
     }
 
-    protected function validator(array $data)
+    public function validator(array $data)
     {
         return Validator::make($data, [ 
             'name' => 'required|string|max:255',
@@ -31,12 +31,13 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function create(array $data)
+    public function createUser(Request $request)
     {
+        $data = $request->all();
+
         $name = $data['name'];
         $email = $data['email'];
         $pwdHash =  bcrypt($data['password']);
-       
         config(['database.connections.pgsqlAuth.username' => env('DB_USERNAME')]);
         config(['database.connections.pgsqlAuth.password' => env('DB_PASSWORD')]);
 
@@ -50,12 +51,13 @@ class RegisterController extends Controller
             'date_of_birth' => $data['date_of_birth'],
             'id_position' => $data['id_position'],
         ]);
-        return User::create([
+        User::create([
             'name' => $name,
             'email' => $email,
             'password' => $pwdHash,
             'role_id' => 3
         ]);  
-        
+
+        return redirect('/addUser')->with('message', 'Co-worker added');;
     }
 }

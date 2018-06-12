@@ -18,6 +18,9 @@ Route::get('/profile/{id_worker}', 'WorkerInfoController@workerShow')->name('wor
 Route::get('/addSS', 'SettlementSheetsController@addSS')->name('addSS');
 Route::post('/addSS', 'SettlementSheetsController@storeSS')->name('storeSS');
 
+Route::get('/addUser', 'UsersController@addUser')->name('addUser');
+Route::post('/addUser', 'UsersController@createUser')->name('createUser');
+
 Route::get('/refreshSS', 'SettlementSheetsController@refreshSS')->name('refreshSS');
 Route::post('/refreshSS', 'SettlementSheetsController@updateSS')->name('updateSS');
 //Route::post('/deleteStaff/{id}','StaffController@destroy')->name('destroy');

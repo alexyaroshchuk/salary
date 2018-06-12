@@ -1,5 +1,8 @@
+<?php
+    use App\Role;
+    $role = new Role();
+?>
 @extends('layouts.start')
-
 @section('content') 
         <p>
                 <h3 style="color: black">Fullname - {{ $worker_fullname }}</h3>
@@ -14,12 +17,14 @@
                         <h3 style="color: black">Hours- {{ $SS -> hours}} </h3>
                 @endforeach
         </p>
-        <p><a class="btn btn-success" href="{{route('addSS', ['id_worker'=>$worker->id_worker])}}" role="button">Add Settlement Sheet</a></p>
-        <p><a class="btn btn-warning" href="{{route('refreshSS')}}" role="button">Update Settlement Sheet</a></p>
-        <form method="POST" action= "{{route('destroySS', ['id_settlement_sheet'=>$SS->id_settlement_sheet])}}">
-                {{ csrf_field() }}
-                <button class = "btn btn-danger">Delete Settlement Sheet</button>
-                <input type="text" name="id_settlement_sheet">
-        </form>         
+        @if(Role::isAdmin() || Role::isAccountant())
+                <p><a class="btn btn-info" style="color: black"  href="{{route('addSS', ['id_worker'=>$worker->id_worker])}}" role="button">Add Settlement Sheet</a></p>
+                <p><a class="btn btn-info" style="color: black" href="{{route('refreshSS')}}" role="button">Update Settlement Sheet</a></p>
+                <form method="POST" action= "{{route('destroySS', ['id_settlement_sheet'=>$SS->id_settlement_sheet])}}">
+                        {{ csrf_field() }}
+                        <button class = "btn btn-info" style="color: black">Delete Settlement Sheet</button>
+                        <input type="text" name="id_settlement_sheet">
+                </form>    
+        @endif     
 @endsection 
 
