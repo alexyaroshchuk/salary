@@ -58,6 +58,44 @@ class UsersController extends Controller
             'role_id' => 3
         ]);  
 
-        return redirect('/addUser')->with('message', 'Co-worker added');;
+        return redirect('/addUser')->with('message', 'Сотрудник добавлен');;
     }
+
+    public function refreshUser(){
+        return view('refreshUser');
+    }
+
+    public function updateUser(Request $request) {
+
+        if(Role::isWorker() || Role::isAccountant())
+	    {
+		    session()->flash(
+			    'messageError', 'Not enough privileges'
+		    );
+		    return back()->withErrors([
+			    'message' => 'Non enough privileges'
+		    ]);
+        }
+        
+        // $data = $request->all();
+
+        // $name = $data['name'];
+        // $email = $data['email'];
+        // $pwdHash =  bcrypt($data['password']);
+        // $role = $data['role_id'];
+
+        // Workers::where('id_worker', $id_worker)->update([
+        //     'fullname' => $data['fullname'],
+        //     'date_of_birth' => $data['date_of_birth'],
+        //     'id_position' => $data['id_position'],
+        // ]);
+        // User::where('id', $id)update([
+        //     'name' => $name,
+        //     'email' => $email,
+        //     'password' => $pwdHash,
+        //     'role_id' => $role
+        // ]);  
+
+        return redirect('/refreshUser')->with('message', 'Сотрудник изменен');;
+    }  
 }

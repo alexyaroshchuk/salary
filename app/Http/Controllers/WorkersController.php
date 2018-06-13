@@ -19,29 +19,29 @@ class WorkersController extends Controller
     }
     
     public function showWorkers(Request $request){
+            
             $workers = SettlementSheets::where(function($query){
 
             $fromDate = Input::has('from_date') ? Input::get('from_date') : null;
             $toDate = Input::has('to_date') ? Input::get('to_date') : null;  
 
-            $MinSL =  Input::has('MinSL') ? Input::get('MinSL'): null;
-            $MaxSL = Input::has('MaxSL') ? Input::get('MaxSL') : null;
+            $MinSL =  Input::has('MinSL') ? Input::get('MinSL'): 0;
+            $MaxSL = Input::has('MaxSL') ? Input::get('MaxSL') : 10000;
 
-            $MinAL = Input::has('MinAL') ? Input::get('MinAL') : null;
-            $MaxAL = Input::has('MaxAL') ? Input::get('MaxAL') : null;  
+            $MinAL = Input::has('MinAL') ? Input::get('MinAL') : 0;
+            $MaxAL = Input::has('MaxAL') ? Input::get('MaxAL') : 10000;  
 
-            $MinAF = Input::has('MinAF') ? Input::get('MinAF') : null;
-            $MaxAF = Input::has('MaxAF') ? Input::get('MaxAF') : null;  
+            $MinAF = Input::has('MinAF') ? Input::get('MinAF') : 0;
+            $MaxAF = Input::has('MaxAF') ? Input::get('MaxAF') : 10000;  
 
-            $MinHours = Input::has('MinHours') ? Input::get('MinHours') : null;
-            $MaxHours = Input::has('MaxHours') ? Input::get('MaxHours') : null;  
-            if(isset($fromDate) && isset($toDate)){
+            $MinHours = Input::has('MinHours') ? Input::get('MinHours') : 0;
+            $MaxHours = Input::has('MaxHours') ? Input::get('MaxHours') : 10000;  
                         $query  -> whereBetween('pay_date', [$fromDate, $toDate])
                         -> whereBetween('sick_leave', [$MinSL, $MaxSL])
                         -> whereBetween('annual_leave', [$MinAL, $MaxAL])
                         -> whereBetween('awards_fine', [$MinAF, $MaxAF])
                         -> whereBetween('hours', [$MinHours, $MaxHours]);
-                }
+                
         })->get();
         return view('workers', compact('workers', 'settlementsheet'));
     }

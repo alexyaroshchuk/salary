@@ -28,46 +28,52 @@
                 <ul class="navbar-nav mr-auto">
                     @guest
                         <li class="nav-item active">
-                            <a class="nav-link " href="/"> Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link " href="/"> Домашяя страница <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about">About</a>
+                            <a class="nav-link" href="/about">Про компанию</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/workers"> Workers </a>
+                            <a class="nav-link" href="/workers"> Сотрудники </a>
                         </li>
                         <li class="nav-item  active">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link" href="{{ route('login') }}">Войти</a>
                         </li>
-                        <!-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
-                            </li> -->
                     
                     @else
                     <li class="dropdown">
                         <a href="#"  data-toggle="dropdown" role="button" aria-expanded="false"  v-pre>
                         {{Auth::user()->name}} <span class="caret"></span>
                         </a>
+                        
                         <ul class="dropdown-menu">
+                        <li class="nav-item">
+                                <a href="/home"> Домашняя страница <span class="sr-only">(current)</span></a>
+                        </li>
                         @if($role->isAdmin())
                             <li class="nav-item">
-                                <a href="{{ route('addUser') }}">Add co-worker</a>
+                                <a href="{{ route('addUser') }}">Добавить сотрудника</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('refreshUser') }}" >Изменить информацию о сотруднике</a>
                             </li>
                         @endif
                             <li class="nav-item">
-                                <a href="/home"> Home <span class="sr-only">(current)</span></a>
+                                <a href="/about">Про компанию</a>
+                            </li>
+                        @if($role->isAdmin()||$role->isAccountant())
+                            <li class="nav-item">
+                                <a href="/workers"> Сотрудники </a> 
                             </li>
                             <li class="nav-item">
-                                <a href="/about">About</a>
+                                <a href="/typeTaxes"> Налоги </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="/workers"> Workers </a> 
-                            </li>
+                        @endif
                             <li class="nav-item">
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                    Logout
+                                    Выйти
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
