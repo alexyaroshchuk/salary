@@ -9,7 +9,7 @@
         <div class="col-md-8 col-md-offset-2">
         <div class="panel-group">
             <div class="panel panel-info"  style="background:#95c0de">
-                <div class="panel-heading">Добавление сотрудника</div>
+                <div class="panel-heading">Добавление нового типа налогов</div>
     </div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('createTT') }}">

@@ -17,7 +17,7 @@ Route::get('/profile/{id_worker}', 'WorkerInfoController@workerShow')->name('wor
 
 Route::get('/typeTaxes', 'TypeTaxesController@taxesShow')->name('taxesShow');
 
-Route::post('/addTT', 'TypeTaxesController@addTT')->name('addTT');
+Route::get('/addTT', 'TypeTaxesController@addTT')->name('addTT');
 Route::post('/addTT', 'TypeTaxesController@createTT')->name('createTT');
 
 Route::get('/addSS', 'SettlementSheetsController@addSS')->name('addSS');
