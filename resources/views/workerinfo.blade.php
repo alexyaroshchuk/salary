@@ -32,6 +32,32 @@
                                 <li class="list-group-item">
                                         <h4 style="color: #585858">Отработанные часы- {{ $SS -> hours}} </h4>
                                 </li>
+                                <li class="list-group-item">
+                                        <h4 style="color: #585858">Тип налога- {{ $SS -> taxe -> id_taxes}} </h4>
+                                </li>
+                                <li class="list-group-item">
+                                        <h4 style="color: #585858">Суммарная З\П без вычета налогов- {{1000*$position -> salary +  $SS -> awards_fine}}</h4>
+                                </li>
+                                <li class="list-group-item">
+                                        <h4 style="color: #585858">Суммарные налоговые отчисления- 
+                                                {{
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->medical_funds +
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->military_funds +
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->pension_funds +
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->social_security_funds 
+
+                                                }}</h4>
+                                </li>
+                                <li class="list-group-item">
+                                        <h4 style="color: #585858">Итоговая З\П- 
+                                                {{ 1000*$position -> salary +  $SS -> awards_fine -(
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->medical_funds +
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->military_funds +
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->pension_funds +
+                                                   (1000*$position -> salary +  $SS -> awards_fine)*$SS->taxe->social_security_funds) 
+
+                                                }}</h4>
+                                </li>
                         </ul>
                 @endforeach
                 

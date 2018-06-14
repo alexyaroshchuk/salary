@@ -22,6 +22,8 @@ class WorkerInfoController extends Controller
         $worker_id=$worker->id_worker;
         $worker_fullname = $worker->fullname;
         $position = $worker -> position;
+        // $taxes = $settlementsheet -> taxes;
+        // dump($taxes);
         return view('workerinfo', compact('worker_id', 'worker_fullname',
                                         'settlementsheet', 'position', 'worker')); 
     }

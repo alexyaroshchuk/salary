@@ -16,4 +16,8 @@ class SettlementSheets extends Model
     public function worker(){
         return $this ->  hasOne('App\Workers', 'id_worker', 'id_worker');
     } 
+
+    public function taxe(){
+        return $this ->  hasOne('App\TypeTaxes', 'id_taxes', 'id_taxes');
+    } 
 }
